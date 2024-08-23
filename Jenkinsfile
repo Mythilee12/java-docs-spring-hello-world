@@ -26,7 +26,7 @@ pipeline {
             }
         }
         stage('print) {
-              steps{
+              steps {
               sh "echo hello"
               }
          }   
