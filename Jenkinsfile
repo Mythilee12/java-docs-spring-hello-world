@@ -25,7 +25,7 @@ pipeline {
                 archiveArtifacts 'target/*.jar'
             }
         }
-        stage('print) {
+        stage('print') {
               steps {
               sh "echo hello"
               }
