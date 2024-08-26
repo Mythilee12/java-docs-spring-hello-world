@@ -10,33 +10,26 @@ pipeline {
         stage('pull') {
             steps {
                 // Get some code from a GitHub repository
-                git branch: 'main', credentialsId: 'github', url: 'git@github.com:Mythilee12/java-docs-spring-hello-world.git'
-
+                git branch: 'main', credentialsId: 'github', url: 'git@github.com:sathishbob/java-docs-spring-hello-world.git'
             }
         }
+        
         stage('build') {
             steps {
                 sh "mvn -Dmaven.test.failure.ignore=true clean install"
             }
         }
+        
         stage('publish') {
             steps {
                 junit 'target/surefire-reports/*.xml'
                 archiveArtifacts 'target/*.jar'
             }
-        }
-        stage('print') {
-            agent {
-                label 'linux'
+            post {
+                success {
+                    emailext body: "Please check the console output at $BUILD_URL for more information", to: "sathishbabudevops@gmail.com", subject: '$PROJECT_NAME is completed - Build number is $BUILD_NUMBER and build kzua mwbl cmqc rogwstatus is $BUILD_STATUS'
                 }
-              steps {
-              sh "echo hello"
-              }
-         }   
+            }
+        }
     }
 }
-
-
-
-
-
