@@ -10,7 +10,7 @@ pipeline {
         stage('pull') {
             steps {
                 // Get some code from a GitHub repository
-                git branch: 'main', credentialsId: 'github', url: 'git@github.com:sathishbob/java-docs-spring-hello-world.git'
+                git branch: 'main', credentialsId: 'github', url: 'git@github.com:Mythilee12/java-docs-spring-hello-world.git'
             }
         }
         
